@@ -34,4 +34,5 @@ requests
 openai
 # psycopg2
 psycopg2-binary
--U google-genai
+google-genai
+
