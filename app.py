@@ -2,7 +2,7 @@
 
 # --------- Modules -----------
 
-repo_path="/Users/Priyanshu/Documents/Projects/RAG/Data/user_data"
+repo_path="/user_data"
 
 import os
 import streamlit as st
