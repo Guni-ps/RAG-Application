@@ -1,12 +1,14 @@
 # source myenv/bin/activate
-
 # pip install -r requirements.txt
 
+# ̉brew install tesseract
+# brew install poppler
 
 numpy
 langchain
 langchain_community
 pymupdf
+pdf2image
 youtube-transcript-api
 pytube
 tiktoken
@@ -26,5 +28,10 @@ bitsandbytes
 streamlit
 unstructured
 pdfminer.six[image]
+pi-heif
 pytesseract
-pdf2image
+requests
+openai
+# psycopg2
+psycopg2-binary
+-U google-genai
