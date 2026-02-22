@@ -27,3 +27,4 @@ streamlit
 unstructured
 pdfminer.six[image]
 pytesseract
+pdf2image
