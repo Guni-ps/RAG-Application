@@ -24,14 +24,18 @@ class EmbeddingManager:
         except Exception as e:
             print(f"Error loading model {self.model_name}:{e}")
             raise
-
+    
+    # data -> list[str]
     def generate_embeddings(self,data:list[str]) -> np.ndarray:
         
         if not self.model:
             raise ValueError("Model not loaded....")
         texts=[]
+        # breakpoint()
         for i in data:
+            # breakpoint()
             texts.append(i.page_content)
+            # texts.append(i)
         
         print(f"Generating embeddings for {len(texts)} texts...")
         embeddings=self.model.encode(texts,show_progress_bar=True)
@@ -39,6 +43,22 @@ class EmbeddingManager:
         return embeddings
     
         print("------------- Embedding Completed ----------------")
+        
+    def generate_embeddings_query(self,data:list[str]):
+        if not self.model:
+            raise ValueError("Model not loaded....")
+        # texts=[]
+        # breakpoint()
+        # for i in data:
+            # breakpoint()
+            # texts.append(i)
+            # texts.append(i)
+        
+        print(f"Generating embeddings for user's query...")
+        embeddings=self.model.encode(data,show_progress_bar=True)
+        print(f"Generated embeddings with shape: {embeddings.shape}")
+        return embeddings
+            
         
         
 # ----------- VECTOR DATABASE -------------
@@ -58,7 +78,8 @@ class VectorDatabase:
             
             self.collection=self.client.get_or_create_collection(
                 name=self.collection_name,
-                metadata={"description":"Embedded documents for RAG"}
+                # metadata={"description":"Embedded documents for RAG"},
+                metadata={"hnsw:space":"cosine"}
             )
             print(f"Vector store initialized,Collection:{self.collection_name}")
             print(f"Existing documents in collection: {self.collection.count()}")
@@ -105,5 +126,20 @@ class VectorDatabase:
         except Exception as e:
             print("Error adding documents to vector store: {e}")    
             raise
+            
+    def get_existing_files(self) -> list[str]:
+        try:
+            count = self.collection.count()
+            if count == 0:
+                return []
+            results = self.collection.get(include=["metadatas"], limit=count)
+            files = set()
+            for meta in results["metadatas"]:
+                if meta and "source_file" in meta:
+                    files.add(meta["source_file"])
+            return list(files)
+        except Exception as e:
+            print(f"Error getting existing files: {e}")
+            return []
         
         print("------------- VectorDatabse Working ----------------")

@@ -1,0 +1,28 @@
+# source myenv/bin/activate
+
+# pip install -r requirements.txt
+
+
+numpy
+langchain
+langchain_community
+pymupdf
+youtube-transcript-api
+pytube
+tiktoken
+sentence_transformers
+chromadb
+uuid
+typing 
+scikit-learn
+jq
+langchain-groq
+huggingface-hub
+transformers 
+accelerate 
+sentence-transformers 
+torch
+bitsandbytes
+streamlit
+unstructured
+pdfminer.six[image]
