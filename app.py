@@ -7,12 +7,12 @@ repo_path="/Users/Priyanshu/Documents/Projects/RAG/Data/user_data"
 import os
 import streamlit as st
 
-from pipeline.ingestion import PDFsource, TXTsource, JSONsource, IngestionManager
-from pipeline.chunks import Chunking
-from pipeline.vectordb import EmbeddingManager,VectorDatabase
-from pipeline.retriever import RAGretriever
-from pipeline.llm import QwenLLM, OpenRouterLLM, GeminiLLM
-from pipeline.chat_history import ChatHistoryManager
+from ingestion import PDFsource, TXTsource, JSONsource, IngestionManager
+from chunks import Chunking
+from vectordb import EmbeddingManager,VectorDatabase
+from retriever import RAGretriever
+from llm import QwenLLM, OpenRouterLLM, GeminiLLM
+from chat_history import ChatHistoryManager
 
 @st.cache_resource
 def load_models():
